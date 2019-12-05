@@ -5,7 +5,11 @@ import './App.css';
 const Home = () => <p>This is the Home component!</p>;
 const About = () => <p>This challenge is about tabs!</p>;
 const Contact = () => <p>Feel free to contact us!</p>;
-const Error = () => <p>Something went <strong>wrong</strong>!</p>;
+const Error = () => (
+  <p>
+    Something went <strong>wrong</strong>!
+  </p>
+);
 
 class App extends Component {
   constructor(props) {
@@ -14,25 +18,50 @@ class App extends Component {
       activeId: 'home'
     };
   }
+  handleChangeTab = event => {
+    const buttonId = event.target.id;
+    this.setState({ activeId: buttonId });
+  };
 
   getTabContent() {
-    switch(this.state.activeId) {
+    switch (this.state.activeId) {
       case 'home':
         return <Home />;
+      case 'about':
+        return <About />;
+      case 'contact':
+        return <Contact />;
+
       default:
         return <Error />;
     }
   }
 
   render() {
+    const activeId = this.state.activeId;
     return (
       <div className="App">
-        <TabSelector />
-        <div className="App-content">
-          {
-            this.getTabContent()
-          }
+        <div className="TabSelector">
+          <TabSelector
+            tab="Home"
+            activeId={activeId === 'home' ? 'active' : ''}
+            id="home"
+            handleChangeTab={this.handleChangeTab}
+          />
+          <TabSelector
+            tab="About"
+            activeId={activeId === 'about' ? 'active' : ''}
+            id="about"
+            handleChangeTab={this.handleChangeTab}
+          />
+          <TabSelector
+            tab="Contact"
+            activeId={activeId === 'contact' ? 'active' : ''}
+            id="contact"
+            handleChangeTab={this.handleChangeTab}
+          />
         </div>
+        <div className="App-content">{this.getTabContent()}</div>
       </div>
     );
   }

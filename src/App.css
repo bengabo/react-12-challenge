@@ -1,7 +1,12 @@
 .App {
   margin: 0 auto;
+  margin-top: 10px;
   max-width: 400px;
   background: #fff;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
 }
 
 .TabSelector {
@@ -15,14 +20,17 @@
   font-size: 1rem;
   padding: 0.5rem;
   flex-grow: 1;
+  
 }
 
 .TabSelector button {
-  border-bottom: 2px solid #eee;
+  border-bottom: 5px solid rgb(190, 190, 190);
+  text-transform: uppercase;
+  font-weight: bolder;
 }
 
 .TabSelector button.active {
-  border-bottom: 2px solid #F76C6C;
+  border-bottom: 5px solid orange;
 }
 
 .TabSelector button:focus {
